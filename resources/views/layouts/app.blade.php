@@ -19,7 +19,7 @@
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                     <header class="flex flex-row items-center gap-2 py-10">
                         <div class="flex flex-row items-center flex-grow space-x-2">
-                            <img src="{{ asset('imgs/icon.png') }}" alt="Crime Tracker" class="w-auto h-12">
+                            <x-logo />
                             <p class="text-2xl font-bold">Crime Tracker</p>
                         </div>
                         @if (Route::has('login'))
@@ -37,5 +37,6 @@
         </div>
     </div>
 </div>
+<x-mary-toast />
 </body>
 </html>
