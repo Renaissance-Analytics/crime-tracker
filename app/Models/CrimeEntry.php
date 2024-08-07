@@ -21,10 +21,11 @@ class CrimeEntry extends Model
         'car_color',
         'car_year',
         'taken_items',
-        'building_entry_method',
+        'entry_method',
         'other_notes',
         'status',
     ];
+    protected $table = 'crime-entries';
 
     protected $casts = [
         'incident_time' => 'datetime',

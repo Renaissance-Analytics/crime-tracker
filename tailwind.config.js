@@ -10,13 +10,17 @@ export default {
         "./resources/**/*.js",
     ],
 
-    theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-            },
-        },
-    },
+    // theme: {
+    //     extend: {
+    //         fontFamily: {
+    //             sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+    //         },
+    //     },
+    // },
+    darkMode: "class",
+    plugins: [forms, require("daisyui")],
+    daisyui: {
+        themes: ["light", "dark"],
+      },
 
-    plugins: [forms],
 };

@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\CreateEntryForm;
 
-Route::view('/', 'welcome');
+Route::get('/', CreateEntryForm::class);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

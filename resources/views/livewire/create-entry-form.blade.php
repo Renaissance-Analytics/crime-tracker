@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="submit" class="space-y-4 flex flex-col">
+    <form wire:submit.prevent="submit" class="flex flex-col space-y-4">
         <div class="grid grid-cols-2 gap-4">
             <x-mary-input wire:model="name" label="Name" placeholder="Enter your name" hint="(All reports are displayed anonymously)" />
             <x-mary-input wire:model="email" type="email" label="Email" placeholder="Enter your email" hint="(if you want to be notified when this report is approved)" />
@@ -10,11 +10,12 @@
         
             <x-mary-datetime wire:model="incident_time" label="Incident Time" required />
         </div>
+        <div class="grid grid-cols-2 gap-4">
+            <x-mary-select wire:model="crime_type" label="Crime Type" required :options="$crimeTypeOptions" placeholder="Select crime type" />
+            <x-mary-file wire:model="photo_evidence" label="Photo Evidence" accept="image/*" hint="Upload any photos or videos of the crime" />
+        </div>
 
-        <x-mary-select wire:model="crime_type" label="Crime Type" required />
 
-
-        <x-mary-file wire:model="photo_evidence" label="Photo Evidence" accept="image/*" hint="Upload any photos or videos of the crime" />
 
         <div class="grid grid-cols-3 gap-4">
             <x-mary-input wire:model="car_type" label="Car Type" placeholder="Enter car type (if applicable)" />
