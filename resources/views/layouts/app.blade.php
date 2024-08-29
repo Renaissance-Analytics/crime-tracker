@@ -15,13 +15,15 @@
     </head>
     <body class="font-sans antialiased">
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-            <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
+           
+            <div class="relative min-h-screen flex flex-col items-center selection:bg-[#FF2D20] selection:text-white">
+                
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                    <header class="flex flex-row items-center gap-2 py-10">
-                        <div class="flex flex-row items-center flex-grow space-x-2">
+                    <header class="flex flex-row items-center w-full gap-2 py-10">
+                        <a class="flex flex-row items-center flex-grow space-x-2" href="/">
                             <x-logo />
                             <p class="text-2xl font-bold">Crime Tracker</p>
-                        </div>
+                        </a>
                         @if (Route::has('login'))
                             <livewire:welcome.navigation />
                         @endif

@@ -29,6 +29,15 @@ class CreateEntryForm extends Component
     public $taken_items;
     public $entry_method;
     public $other_notes;
+    public int $step = 1;
+    public int $totalSteps = 5;
+    public $stepNames = [
+        1 => 'User Details',
+        2 => 'Crime Details',
+        3 => 'Vehicle Details',
+        4 => 'Miscellaneous',
+        5 => 'Review',
+    ];
 
     public function mount()
     {
@@ -71,6 +80,59 @@ class CreateEntryForm extends Component
         }
     }
 
+    public function nextStep()
+    {
+        $this->validateCurrentStep();
+        if($this->step < $this->totalSteps) {
+            $this->step++;
+        }
+    }
+
+    public function prevStep()
+    {
+        if($this->step > 1) {
+            $this->step--;
+        }
+    }
+
+    public function addSampleData()
+    {
+        $this->name = 'John Doe';
+        $this->email = 'john@doe.com';
+        $this->location = '123 Main St, Anytown, USA';
+        $this->incident_time = '2024-01-01 12:00:00';
+        $this->crime_type = 1;
+        $this->entry_method = 1;
+        $this->car_type = 'Toyota';
+        $this->car_color = 'Red';
+        $this->car_year = 2024;
+        $this->taken_items = 'Laptop';
+        $this->photo_evidence = 'https://example.com/photo.jpg';
+        $this->other_notes = 'This is a sample note';
+    }
+
+    public function validateCurrentStep()
+    {
+        switch ($this->step) {
+            case 1:
+                $this->validate([
+                    'email' => 'nullable|email',
+                ]);
+                break;
+            case 2:
+                $this->validate([
+                    'location' => 'required',
+                    'incident_time' => 'required',
+                ]);
+                $this->validate([
+                    'crime_type' => 'required',
+                    'entry_method' => 'required',
+                ]);
+                break;
+           
+        }
+    }
+
     public function render()
     {
         return view('livewire.create-entry-form');
@@ -78,14 +140,7 @@ class CreateEntryForm extends Component
 
     public function submit()
     {
-        $validatedData = $this->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'location' => 'required',
-            'incident_time' => 'required',
-            'crime_type' => 'required',
-            'entry_method' => 'required',
-        ]);
+       
 
         $createEntryAction = new CreateEntryAction();
         $entry = $createEntryAction->execute(
